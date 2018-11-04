@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>英雄联盟数据库</title>
+    <meta charset="utf-8">
+    <link href="/static/css/heroinfos.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div>
+        <h1>英雄联盟信息表——查询关键字：{{ msg }}</h1>
+        <table>
+
+        <tr>
+        <td>序号</td><td>英雄</td><td>近远程</td><td>位置</td>
+        <td>背景链接</td><td>性别</td>
+        </tr>
+
+        {% for user in users %}
+        <tr>
+            <td>{{ user.hid }}</td>
+            <td>{{ user.hname }}</td>
+            <td>{{ user.hattack }}</td>
+            <td>{{ user.hposition }}</td>
+            <td class='c1'><a href='{{ user.hbackground }}'>{{ user.hbackground }}</a></td>
+            <td>{{ user.hgender }}</td>
+        </tr>
+        {% endfor %}
+        
+        </table>
+    </div>
+</body>
+</html>

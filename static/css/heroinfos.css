@@ -1,0 +1,25 @@
+
+<style type="text/css">
+　　　　body{
+        height:1000px;
+        background:red;
+}
+    h1{
+        text-align:center;
+        font-family:'微软雅黑';
+    }
+    table{margin:0 auto;border:3px solid blue;opacity:0.5;
+    text-align:center;font-family:'微软雅黑';background-color:FFE894;
+    }
+    td{
+    width:150px;
+    height:20px;
+    border:2px solid green;
+    }
+    .c1{
+    width:600px;
+    }
+    a{
+    text-decoration:none;
+    }
+</style>
