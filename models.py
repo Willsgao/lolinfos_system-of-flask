@@ -11,6 +11,8 @@ app.config['SQLALCHEMY_DATABASE_URI']=\
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # 在数据库命令完成后，自动进行提交操作
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']=True
+# 设置app的密钥
+app.config['SECRET_KEY']='guanguanjujiuzaihezhizhou'
 
 db = SQLAlchemy(app)
 

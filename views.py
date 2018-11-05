@@ -1,4 +1,5 @@
-from flask import Flask,render_template,redirect,request
+from flask import Flask,render_template,redirect,\
+request,session,make_response
 from models import createdbs,dropdbs,Users,Heros,db,app
 from dbs_works import DbWorks
 
@@ -10,13 +11,35 @@ from dbs_works import DbWorks
 @app.route('/login',methods=['GET','POST'])
 def index_views():
     if request.method == 'GET':
-        return render_template('heroindex.html')
+        if 'user' in session:
+            return redirect('/dbinfos')
+        else:
+            if 'user' in request.cookies:
+                session['user'] = request.cookies.get('username')
+                return redirect('/dbinfos')
+            else:
+                return render_template('heroindex.html')
     else:
         username = request.form.get('username')
         password = request.form.get('password')
-        # source_url = request.form.get('source_url')        
-        # return render_template('index.html')
-        return redirect('/dbinfos')
+        # 查询用户名是否存在
+        user = Users.query.filter_by(username=username).first()
+        if not user:
+            return '用户名不存在！'
+        else:
+            if user.password != password:
+                return '用户密码输入有误！'
+            else:
+                resp = redirect('/dbinfos')
+                # 创建session
+                session['user'] = username
+                print('session=',username)
+                if 'isSaved' in request.form:
+                    print('isSaved+++++++++++++++++')
+                    resp.set_cookie('user',username,60*60*24*365)
+                    print(request.cookies.get('user'))
+                    print('创建cookie!')
+                return resp
 
 # 创建数据库
 # @app.route('/createdbs')
